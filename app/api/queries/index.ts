@@ -1,0 +1,4 @@
+export const QUERY_KEYS = {
+  WEATHER: "WEATHER",
+  WEATHER_GEO: "WEATHER_GEO",
+};
