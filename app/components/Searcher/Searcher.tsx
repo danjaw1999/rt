@@ -9,11 +9,8 @@ import { useWeatherByCity } from "@/app/api/queries/weather/useWeatherByCity";
 import { toast } from "react-hot-toast";
 import { CityInfo } from "@/app/types/types";
 import { useKey } from "react-use";
-import { useQueryClient } from "@tanstack/react-query";
-import { QUERY_KEYS } from "@/app/api/queries";
 
 export const Searcher = () => {
-  const queryClient = useQueryClient();
   const [city, setCity] = useState("");
   const { addCity } = useCityStore();
   const [isButtonClicked, setButtonClicked] = useState(false);
