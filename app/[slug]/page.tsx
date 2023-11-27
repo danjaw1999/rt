@@ -2,7 +2,6 @@
 import { useWeatherByCity } from "@/app/api/queries/weather/useWeatherByCity";
 import { useParams } from "next/navigation";
 import Spinner from "@/app/components/ui/Spinner/Spinner";
-import Image from "next/image";
 import { useCallback, useMemo } from "react";
 import { Arrow } from "@/app/components/ui/Arrow/Arrow";
 import { useCopyToClipboard } from "usehooks-ts";
@@ -10,6 +9,7 @@ import { CopyIcon } from "@/app/components/ui/CopyIcon/CopyIcon";
 import { toast } from "react-hot-toast";
 import { useDailyWeather } from "@/app/api/queries/weather/useDailyWeather";
 import WeatherForecastTable from "@/app/components/WeatherForecastTable/WeatherForecastTable";
+import { WeatherIcon } from "@/app/components/ui/WeatherIcon/WeatherIcon";
 
 export default function Page() {
   const { slug } = useParams();
@@ -22,11 +22,6 @@ export default function Page() {
 
   const { data: dataDailyWeather, isLoading: isDailyWeatherLoading } =
     useDailyWeather(data?.coord);
-
-  const weatherIcon = useMemo(
-    () => `https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`,
-    [data?.weather],
-  );
 
   const formatTime = useCallback((timestamp: number) => {
     const date = new Date(timestamp * 1000);
@@ -50,13 +45,9 @@ export default function Page() {
           <div className="text-center border border-white p-8 rounded-lg relative min-w-[300px] m-8">
             <h1 className="text-3xl font-bold mb-4">{data.name}</h1>
             <div className="mb-4 flex flex-col justify-center items-center">
-              <Image
-                src={weatherIcon}
-                width={50}
-                height={50}
-                alt="Weather Icon"
-                className="w-16 h-16"
-              />
+              {data.weather[0].icon && (
+                <WeatherIcon slug={data.weather[0].icon} />
+              )}
               <p>{weatherDescription}</p>
             </div>
             <div className="mb-4">

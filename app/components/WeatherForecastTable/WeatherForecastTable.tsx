@@ -1,13 +1,12 @@
-import { FC, useId, useMemo } from "react";
+import { FC } from "react";
 import { DailyForecast } from "@/app/types/types";
-import Image from "next/image";
+import { WeatherIcon } from "@/app/components/ui/WeatherIcon/WeatherIcon";
 
 type Props = {
   forecastData?: DailyForecast[];
 };
 
 const WeatherForecastTable: FC<Props> = ({ forecastData }) => {
-  const id = useId();
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold mb-4 text-center">
@@ -26,13 +25,7 @@ const WeatherForecastTable: FC<Props> = ({ forecastData }) => {
               })}
             </p>
             <p className="mb-2">{main.temp} °C</p>
-            <Image
-              src={`https://openweathermap.org/img/wn/${weather[0].icon}.png`}
-              width={50}
-              height={50}
-              alt="Weather Icon"
-              className="w-16 h-16 mx-auto"
-            />
+            {weather[0].icon && <WeatherIcon slug={weather[0].icon} />}
           </div>
         ))}
       </div>
