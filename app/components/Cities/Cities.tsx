@@ -21,7 +21,7 @@ export const Cities = () => {
       </div>
       {citiesArr?.length! > 0 && (
         <Button
-          className={"mt-4 w-full max-w-[450px]"}
+          className={"mt-4 w-full max-w-[450px] w-3/4"}
           onClick={handleRemoveAll}
         >
           Remove all

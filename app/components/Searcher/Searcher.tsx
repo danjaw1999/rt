@@ -57,7 +57,11 @@ export const Searcher = () => {
 
   return (
     <div className={"flex flex-col align-center"}>
-      <div className={"flex gap-3 justify-center items-center"}>
+      <div
+        className={
+          "flex flex-col md:flex-row gap-3 justify-center items-center"
+        }
+      >
         <Search city={city} setCity={setCity} />
         <Button onClick={handleClick} disabled={isLoading || city.length < 2}>
           Add

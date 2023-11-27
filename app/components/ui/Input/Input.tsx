@@ -16,7 +16,7 @@ export const Input: FC<Props> = ({
   id,
 }) => {
   return (
-    <div className="w-72">
+    <div className="sm:w-72">
       <div className="relative h-10 w-full min-w-[200px]">
         <input
           value={value}
