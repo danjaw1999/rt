@@ -14,7 +14,7 @@ const WeatherForecastTable: FC<Props> = ({ forecastData }) => {
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
         {forecastData?.map(({ dt, main, weather }) => (
-          <div key={dt} className="border p-2 text-center">
+          <div key={dt} className="border p-2 text-center rounded-xl">
             <p className="mb-2">
               {new Date(dt * 1000).toLocaleDateString('en-US', {
                 weekday: 'short',

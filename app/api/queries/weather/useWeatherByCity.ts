@@ -6,7 +6,7 @@ import { CityInfo } from '@/app/types/types'
 export const useWeatherByCity = (city: string, enabled?: boolean) => {
   const { data, isLoading, refetch } = useQuery<CityInfo>({
     queryKey: [QUERY_KEYS.WEATHER, city],
-    queryFn: () => getWeatherCityData(city),
+    queryFn: () => getWeatherCityData(city.trim()),
     staleTime: 5 * 60 * 1000,
     enabled: enabled && city.length > 2,
   })

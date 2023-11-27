@@ -17,18 +17,19 @@ export const useCityStore = create<WeatherStore>(set => ({
   cities: localData ?? [],
   addCity: city =>
     set(state => {
-      if (city?.length > 2) {
+      const cityName = city.trim()
+      if (cityName?.length > 2) {
         if (!state.cities) {
-          setLocalStorage('cities', [city])
-          return { cities: [city] }
+          setLocalStorage('cities', [cityName])
+          return { cities: [cityName] }
         }
         if (
           !state.cities
-            .map(city => city.toLowerCase())
-            ?.includes(city.toLowerCase())
+            .map(cityName => cityName.toLowerCase())
+            ?.includes(cityName.toLowerCase())
         ) {
-          const newCities = [...state.cities, city]
-          toast.success(` ${city} successfully added!`)
+          const newCities = [...state.cities, cityName]
+          toast.success(` ${cityName} successfully added!`)
           setLocalStorage('cities', newCities)
           return { cities: newCities }
         } else {

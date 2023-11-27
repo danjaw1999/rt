@@ -20,7 +20,8 @@ export default function Page() {
   )
   const [, copy] = useCopyToClipboard()
 
-  const { data: dataDailyWeather } = useDailyWeather(data?.coord)
+  const { data: dataDailyWeather, isLoading: isDailyWeatherLoading } =
+    useDailyWeather(data?.coord)
 
   const weatherIcon = useMemo(
     () => `https://openweathermap.org/img/wn/${data?.weather[0].icon}.png`,
@@ -41,12 +42,12 @@ export default function Page() {
   }, [])
 
   return (
-    <div className="flex justify-center flex-col items-center h-screen bg-gradient-to-b from-blue-500 to-purple-800 text-white">
+    <div className="flex justify-center flex-col items-center py-4 min-h-screen lg:h-screen bg-gradient-to-b from-blue-500 to-purple-800 text-white">
       {isLoading ? (
         <Spinner />
       ) : data && data.name ? (
         <>
-          <div className="text-center border border-white p-8 rounded-lg relative min-w-[300px]">
+          <div className="text-center border border-white p-8 rounded-lg relative min-w-[300px] m-8">
             <h1 className="text-3xl font-bold mb-4">{data.name}</h1>
             <div className="mb-4 flex flex-col justify-center items-center">
               <Image
@@ -76,7 +77,11 @@ export default function Page() {
               <CopyIcon />
             </div>
           </div>
-          <WeatherForecastTable forecastData={dataDailyWeather} />
+          {!isDailyWeatherLoading ? (
+            <WeatherForecastTable forecastData={dataDailyWeather} />
+          ) : (
+            <Spinner />
+          )}
         </>
       ) : (
         <>
