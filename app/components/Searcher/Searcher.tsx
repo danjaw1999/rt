@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Search from "@/app/components/ui/Search/Search";
 import { useCityStore } from "@/app/store/cities";
 import { Button } from "@/app/components/ui/Button/Button";
@@ -8,7 +8,7 @@ import { useWeatherByGeo } from "@/app/api/queries/weather/useWeatherByGeo";
 import { useWeatherByCity } from "@/app/api/queries/weather/useWeatherByCity";
 import { toast } from "react-hot-toast";
 import { CityInfo } from "@/app/types/types";
-import { useKey } from "react-use";
+import useEnterKey from "@/app/hooks/useEnterKey";
 
 export const Searcher = () => {
   const [city, setCity] = useState("");
@@ -53,10 +53,9 @@ export const Searcher = () => {
       setButtonClicked(true);
       await refetch();
     }
-  }, [city]);
+  }, [city.length, refetch]);
 
-  useKey("Enter", handleClick);
-
+  useEnterKey(handleClick);
   return (
     <div className={"flex flex-col align-center"}>
       <div

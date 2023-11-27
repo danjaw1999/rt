@@ -9,6 +9,7 @@ export const useDailyWeather = (cords?: Cords) => {
     queryKey: [QUERY_KEYS.WEATHER, cords],
     queryFn: () => getDailyWeatherData(cords),
     staleTime: 5 * 60 * 1000,
+    enabled: !!cords,
   });
 
   return { data: useGetMapEveryNthElement(data?.list, 8), isLoading, refetch };
