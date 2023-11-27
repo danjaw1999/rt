@@ -1,10 +1,10 @@
-import { FC, useMemo } from 'react'
-import { DailyForecast } from '@/app/types/types'
-import Image from 'next/image'
+import { FC, useMemo } from "react";
+import { DailyForecast } from "@/app/types/types";
+import Image from "next/image";
 
 type Props = {
-  forecastData?: DailyForecast[]
-}
+  forecastData?: DailyForecast[];
+};
 
 const WeatherForecastTable: FC<Props> = ({ forecastData }) => {
   return (
@@ -16,8 +16,8 @@ const WeatherForecastTable: FC<Props> = ({ forecastData }) => {
         {forecastData?.map(({ dt, main, weather }) => (
           <div key={dt} className="border p-2 text-center rounded-xl">
             <p className="mb-2">
-              {new Date(dt * 1000).toLocaleDateString('en-US', {
-                weekday: 'short',
+              {new Date(dt * 1000).toLocaleDateString("en-US", {
+                weekday: "short",
               })}
             </p>
             <p className="mb-2">{main.temp} °C</p>
@@ -32,7 +32,7 @@ const WeatherForecastTable: FC<Props> = ({ forecastData }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default WeatherForecastTable
+export default WeatherForecastTable;

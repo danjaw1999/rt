@@ -1,18 +1,18 @@
-'use client'
-import { City } from '@/app/components/City/City'
-import Spinner from '@/app/components/ui/Spinner/Spinner'
-import { useCities } from '@/app/hooks/useCities'
-import { Button } from '@/app/components/ui/Button/Button'
-import { useCallback } from 'react'
+"use client";
+import { City } from "@/app/components/City/City";
+import Spinner from "@/app/components/ui/Spinner/Spinner";
+import { useCities } from "@/app/hooks/useCities";
+import { Button } from "@/app/components/ui/Button/Button";
+import { useCallback } from "react";
 
 export const Cities = () => {
-  const { citiesArr, isLoading, removeAllCities } = useCities()
+  const { citiesArr, isLoading, removeAllCities } = useCities();
   const handleRemoveAll = useCallback(() => {
-    removeAllCities()
-  }, [])
+    removeAllCities();
+  }, []);
   return !isLoading ? (
-    <div className={'h-full flex flex-col w-full my-4 items-center'}>
-      <div className={'flex gap-3 justify-center flex-wrap items-center'}>
+    <div className={"h-full flex flex-col w-full my-4 items-center"}>
+      <div className={"flex gap-3 justify-center flex-wrap items-center"}>
         {citiesArr?.length ? (
           citiesArr.map((city, id) => <City key={city + id} name={city} />)
         ) : (
@@ -21,7 +21,7 @@ export const Cities = () => {
       </div>
       {citiesArr?.length! > 0 && (
         <Button
-          className={'mt-4 w-full max-w-[450px]'}
+          className={"mt-4 w-full max-w-[450px]"}
           onClick={handleRemoveAll}
         >
           Remove all
@@ -29,8 +29,8 @@ export const Cities = () => {
       )}
     </div>
   ) : (
-    <div className={'flex justify-center items-center mt-8'}>
+    <div className={"flex justify-center items-center mt-8"}>
       <Spinner />
     </div>
-  )
-}
+  );
+};
