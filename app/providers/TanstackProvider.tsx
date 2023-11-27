@@ -6,9 +6,9 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 type Props = { children: ReactNode };
 
-function TanstackProvider({ children }: Props) {
-  const [client] = useState(new QueryClient());
+const client = new QueryClient();
 
+function TanstackProvider({ children }: Props) {
   return (
     <>
       <QueryClientProvider client={client}>

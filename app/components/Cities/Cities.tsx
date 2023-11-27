@@ -10,7 +10,15 @@ export const Cities = () => {
   const handleRemoveAll = useCallback(() => {
     removeAllCities();
   }, []);
-  return !isLoading ? (
+
+  if (isLoading) {
+    return (
+      <div className={"flex justify-center items-center mt-8"}>
+        <Spinner />
+      </div>
+    );
+  }
+  return (
     <div className={"h-full flex flex-col w-full my-4 items-center"}>
       <div className={"flex gap-3 justify-center flex-wrap items-center"}>
         {citiesArr?.length ? (
@@ -27,10 +35,6 @@ export const Cities = () => {
           Remove all
         </Button>
       )}
-    </div>
-  ) : (
-    <div className={"flex justify-center items-center mt-8"}>
-      <Spinner />
     </div>
   );
 };

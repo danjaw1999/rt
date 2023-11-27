@@ -13,9 +13,9 @@ type Props = {
   setCity: Dispatch<SetStateAction<string>>;
 };
 export const Search: FC<Props> = ({ city, setCity }) => {
-  const onChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setCity(e.target.value);
-  }, []);
+  };
 
   return (
     <div className={"flex items-center justify-center"}>
