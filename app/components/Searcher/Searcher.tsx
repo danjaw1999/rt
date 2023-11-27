@@ -46,14 +46,14 @@ export const Searcher = () => {
       setCity("");
       setButtonClicked(false);
     }
-  }, [cityInfo, isButtonClicked]);
+  }, [cityInfo, isButtonClicked, city]);
 
   const handleClick = useCallback(async () => {
     setButtonClicked(true);
     await refetch();
   }, []);
 
-  useKey("Enter", handleClick);
+  useKey("Enter", city.length > 2 ? handleClick : undefined);
 
   return (
     <div className={"flex flex-col align-center"}>
